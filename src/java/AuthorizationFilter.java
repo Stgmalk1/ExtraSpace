@@ -22,7 +22,8 @@ public class AuthorizationFilter implements Filter {
 
 	private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
         Arrays.asList("", "/index", "/forgot", "/register")));
-
+// doFilter function don't let anonymous user get into pages without login
+        // Example reset.html can't be accessed directly since it filters on the basis of username and requests
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
@@ -40,12 +41,13 @@ public class AuthorizationFilter implements Filter {
             response.sendRedirect(request.getContextPath() + "/index");
         }
     }
-
+// This function initializes filter and exception is added if that's not supported by the browser
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    // This function destroys filter and exception is added if that's not supported by the browser
     @Override
     public void destroy() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

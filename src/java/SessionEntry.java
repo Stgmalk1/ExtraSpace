@@ -15,6 +15,9 @@ import java.sql.SQLException;
  * @author xhunter
  */
 public class SessionEntry {
+    // This creates an entry of the active session in the database for making the login more secure. 
+    // So no two user with the same credentials can login.
+    // Function that saves username on login
     public static boolean insert(String uname){
         Connection con = null;
 		PreparedStatement ps = null;
@@ -38,6 +41,7 @@ public class SessionEntry {
                     }
                         return false;
 }
+    // Function that saves username on logout
     public static boolean delete(String uname){
         Connection con = null;
 		PreparedStatement ps = null;

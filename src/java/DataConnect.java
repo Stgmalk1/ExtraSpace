@@ -14,6 +14,7 @@ import java.util.logging.Logger;
  * @author xhunter
  */
 public class DataConnect {
+    // Function that connects the program with the database.Exception is handled if connection fails.
     public static Connection getConnection() {
 		try {
                     Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/extraspace", "root", "1");
@@ -25,6 +26,7 @@ public class DataConnect {
 			return null;
         }
 }
+    // Function that closes the database if any error is found. Exception is handled.
     public static void close(Connection con) {
 		try {
 			con.close();

@@ -18,7 +18,7 @@ import javax.servlet.http.Part;
  */
 public class FileUpload { 
     private Part uploadedFile;
-    private String folder = "c:\\files";
+    private String folder = "";
 
     public Part getUploadedFile() {
     return uploadedFile;
@@ -30,7 +30,7 @@ public class FileUpload {
 
 
     public void saveFile(){
-
+// Refered function in the userbean.java for saving/adding files in the user directory
     try (InputStream input = uploadedFile.getInputStream()) {
     String fileName = uploadedFile.getSubmittedFileName();
             Files.copy(input, new File(folder, fileName).toPath());

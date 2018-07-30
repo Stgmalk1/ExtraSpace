@@ -12,6 +12,7 @@ import java.sql.SQLException;
  * @author xhunter
  */
 public class Login {
+    // Refered function in userbean.java for validate the correct username and password
     public static boolean validate(String user, String password){
 		Connection con = null;
 		PreparedStatement ps = null;

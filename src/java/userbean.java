@@ -39,6 +39,7 @@ public class userbean implements Serializable {
     /**
      * Creates a new instance of userbean
      */
+    // Basic Constructor
     public userbean() {
         username = "";
         password = "";
@@ -51,6 +52,9 @@ public class userbean implements Serializable {
     /**
      * @return the username
      */
+    /*
+    Getters and setters
+    */
     public String getUsername() {
         return username;
     }
@@ -118,6 +122,7 @@ public class userbean implements Serializable {
         this.sectype = sectype;
     }
 
+    // For validating Username and Password at the time of Login
     public String validateUsernamePassword() {
 		boolean valid = Login.validate(username, password);
                 String sessionusername = null;
@@ -148,12 +153,15 @@ public class userbean implements Serializable {
 	}
 
     //logout event, invalidate session
+    // Whenever user presses logout
     public String logout() {
             HttpSession session = SessionUtils.getSession();
             session.invalidate();
             SessionEntry.delete(username);
             return "index";
 	}
+    
+    // Function that works at the time of registeration for registering new username
     public String register(){
         boolean doesExist = Register.checkExist(username);
         if(doesExist){
@@ -176,6 +184,7 @@ public class userbean implements Serializable {
         return "index";
     }
     
+    // Function invokes at the time when you click on forgot password 
     public String forgot(){
         String strsectype = Integer.toString(sectype);
         System.out.print(strsectype);
@@ -197,6 +206,8 @@ public class userbean implements Serializable {
         }
         return "forgot";
     }
+    
+    // This function resets password after checking security question
     public String reset(){
         if(password.equals(repassword)){
         Reset.resetPassword(username, password);
@@ -219,6 +230,9 @@ public class userbean implements Serializable {
     /**
      * @return the uploadedFile
      */
+    /*
+    Getters and setters for file
+    */
     public Part getUploadedFile() {
         return uploadedFile;
     }
@@ -230,6 +244,7 @@ public class userbean implements Serializable {
         this.uploadedFile = uploadedFile;
     }
     
+    //For adding file in the username
     public String saveFile(){
     try (InputStream input = uploadedFile.getInputStream()) {
     String fileName = uploadedFile.getSubmittedFileName();
@@ -242,13 +257,15 @@ public class userbean implements Serializable {
         }
         return "home";
     }
+    
+    // For listing the files that are already there in the username
     public void listfilename(){
         String dirPath = path+'/'+username;
         list.removeAll(list);
         File dir = new File(dirPath);
         File[] files = dir.listFiles();
         if (files.length == 0) {
-            list.add("No photos uploaded");
+            list.add("No files uploaded");
         } else {
             for (File aFile : files) {
             list.add(aFile.getName() + " - " + aFile.length() +"Kb");
@@ -259,6 +276,9 @@ public class userbean implements Serializable {
     /**
      * @return the list
      */
+    /*
+    Getters and setters for Listing the file names and files
+    */
     public ArrayList<String> getList() {
         return list;
     }
@@ -286,6 +306,7 @@ public class userbean implements Serializable {
         this.filename = filename;
     }
     
+    // Functions invokes when you delete the file name
     public String deleteFile(){
         try{
     		File file = new File(path+'/'+username+'/'+filename);

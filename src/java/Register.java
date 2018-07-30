@@ -15,6 +15,7 @@ import java.sql.SQLException;
  * @author xhunter
  */
 public class Register {
+    // Function that checks if the same username is trying to register or not.
     public static boolean checkExist(String user){
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -37,6 +38,8 @@ public class Register {
                     }
                                return false;
     }
+    
+    // Refered function in userbean.java that registers a user
     public static boolean insert(int uid, String uname, String pwd, String sectype, String secans){
         Connection con = null;
 		PreparedStatement ps = null;
@@ -64,6 +67,9 @@ public class Register {
                     }
                         return false;
     } 
+    
+    // Functions that counts the last uid and give new username lastid + 1
+    // Example last username id was 99 then new username id will be 100
     public static int countUID(){
 		Connection con = null;
 		PreparedStatement ps = null;

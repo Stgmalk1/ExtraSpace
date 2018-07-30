@@ -15,6 +15,7 @@ import java.sql.SQLException;
  * @author xhunter
  */
 public class Reset {
+    //Referred Function that resets the password in the userbean.java file
     public static void resetPassword(String username, String password){
 		Connection con = null;
 		PreparedStatement ps = null;
